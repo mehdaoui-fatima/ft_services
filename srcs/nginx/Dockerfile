@@ -2,7 +2,8 @@ FROM    alpine:3.12.3
 RUN     apk update ; \
         apk add openrc ; \
         apk add nginx ; \
-        apk add openssl;
+        apk add openssl
+        
 COPY    nginx_conf.sh   /tmp
 RUN     sh /tmp/nginx_conf.sh
 COPY    nginx.conf      /etc/nginx/
