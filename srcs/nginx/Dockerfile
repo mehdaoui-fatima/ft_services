@@ -4,8 +4,8 @@ RUN     apk update ; \
         apk add nginx ; \
         apk add openssl
         
-COPY    nginx_conf.sh   /tmp
-RUN     sh /tmp/nginx_conf.sh
+COPY    setup.sh   /tmp
+RUN     sh /tmp/setup.sh
 COPY    nginx.conf      /etc/nginx/
 COPY    index.html      /www
 RUN     mkdir -p /run/nginx  && mkdir -p /run/openrc/softlevel
