@@ -28,5 +28,3 @@ RUN     mkdir -p /run/nginx  && mkdir -p /run/openrc/softlevel
 
 
 EXPOSE 5000
-
-
