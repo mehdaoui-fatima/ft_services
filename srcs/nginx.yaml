@@ -13,8 +13,8 @@ spec:
     spec:
       containers:
       - name: nginx
-        imagePullPolicy: Never
         image: nginx
+        imagePullPolicy: Never
         resources:
           limits:
             memory: "128Mi"

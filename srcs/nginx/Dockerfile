@@ -4,17 +4,12 @@ RUN     apk update ; \
         apk add nginx ; \
         apk add openssl
         
-COPY    setup.sh   /tmp
+COPY    setup.sh   /tmp 
+ADD     services_status.sh /tmp       
 RUN     sh /tmp/setup.sh
 COPY    nginx.conf      /etc/nginx/
 COPY    index.html      /www
 RUN     mkdir -p /run/nginx  && mkdir -p /run/openrc/softlevel
-
-
-
-
-
-
-
-
 EXPOSE 80 443
+
+ENTRYPOINT ["sh", "/tmp/services_status.sh"]
