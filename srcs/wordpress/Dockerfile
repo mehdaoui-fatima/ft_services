@@ -10,6 +10,7 @@ RUN     apk update && \
         rm /www/latest.tar.gz
           
 COPY    setup.sh   /tmp
+ADD     services_status.sh /tmp  
 RUN     sh /tmp/setup.sh
 COPY    nginx.conf      /etc/nginx/
 RUN     mkdir -p /run/nginx  && mkdir -p /run/openrc/softlevel
@@ -22,3 +23,4 @@ RUN     mkdir -p /run/nginx  && mkdir -p /run/openrc/softlevel
 
 
 EXPOSE 5050
+ENTRYPOINT ["sh", "/tmp/services_status.sh"]
