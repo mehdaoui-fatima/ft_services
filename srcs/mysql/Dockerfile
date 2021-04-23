@@ -6,6 +6,6 @@ RUN     apk update ; \
 
 COPY    setup.sh   /tmp
 RUN     sh   /tmp/setup.sh
+ADD     services_status.sh /tmp  
 
-
-#EXPOSE 5050
+ENTRYPOINT ["sh", "/tmp/services_status.sh"]
