@@ -7,9 +7,9 @@ RUN     apk update ; \
         apk add php-mysqli && \
         apk add php7 php7-fpm php7-opcache && \
         wget  https://files.phpmyadmin.net/phpMyAdmin/5.0.2/phpMyAdmin-5.0.2-all-languages.tar.gz -P /www/ && \
-        tar zxvf /www/phpMyAdmin-5.0.2-all-languages.tar.gz && -C /www/ \
+        tar zxvf /www/phpMyAdmin-5.0.2-all-languages.tar.gz -C /www/  && \
         rm /www/phpMyAdmin-5.0.2-all-languages.tar.gz && \
-        mv /www/phpMyAdmin-5.0.2-all-languages phpmyadmin && \
+        mv /www/phpMyAdmin-5.0.2-all-languages /www/phpmyadmin && \
         chmod -R 755 /www/phpmyadmin
 
 
@@ -19,12 +19,8 @@ COPY    setup.sh   /tmp
 RUN     sh /tmp/setup.sh
 COPY    nginx.conf      /etc/nginx/
 RUN     mkdir -p /run/nginx  && mkdir -p /run/openrc/softlevel
-
-
-
-
-
-
+ADD     services_status.sh /tmp 
 
 
 EXPOSE 5000
+ENTRYPOINT ["sh", "/tmp/services_status.sh"]
