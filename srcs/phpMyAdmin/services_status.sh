@@ -8,7 +8,6 @@ pgrep nginx
 STATUS1=$?
 pgrep php-fpm7
 STATUS2=$?
-echo $STATUS1 $STATUS2
 if [ $STATUS1 != 0 ]
 then
     rc-service nginx restart 

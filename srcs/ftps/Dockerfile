@@ -17,5 +17,7 @@ RUN     apk update && \
         openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout /etc/ssl/private/vsftpd.pem -out /etc/ssl/private/vsftpd.pem -subj "/C=$COUNTRY/ST=$STATE/L=$LOCALITY/O=$ORGANIZATION/CN=$SERVERNAME"
 
 COPY    vsftpd.conf etc/vsftpd/
+ADD     services_status.sh /tmp
 
 EXPOSE 21
+ENTRYPOINT ["sh", "/tmp/services_status.sh"]
