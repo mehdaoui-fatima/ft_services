@@ -21,7 +21,7 @@ spec:
             cpu: "500m"
         ports:
         - name : ftps
-          containerPort: 5050
-          hostPort : 5050
+          containerPort: 21
+          hostPort : 21
 
 

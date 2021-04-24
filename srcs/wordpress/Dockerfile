@@ -7,11 +7,14 @@ RUN     apk update && \
         apk add php7 php7-fpm php7-opcache && \
         wget  http://wordpress.org/latest.tar.gz -P /www/ && \
         tar -xzvf /www/latest.tar.gz -C /www/ && \
-        rm /www/latest.tar.gz
-          
-COPY    setup.sh   /tmp
+        rm /www/latest.tar.gz && \
+        apk update && \
+        adduser -D -g 'www' www && \
+        chown -R www:www /var/lib/nginx && \
+        chown -R www:www /www 
+
+
 ADD     services_status.sh /tmp  
-RUN     sh /tmp/setup.sh
 COPY    nginx.conf      /etc/nginx/
 RUN     mkdir -p /run/nginx  && mkdir -p /run/openrc/softlevel
 

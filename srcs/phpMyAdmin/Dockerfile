@@ -10,13 +10,12 @@ RUN     apk update ; \
         tar zxvf /www/phpMyAdmin-5.0.2-all-languages.tar.gz -C /www/  && \
         rm /www/phpMyAdmin-5.0.2-all-languages.tar.gz && \
         mv /www/phpMyAdmin-5.0.2-all-languages /www/phpmyadmin && \
-        chmod -R 755 /www/phpmyadmin
+        chmod -R 755 /www/phpmyadmin && \
+        apk update  && \
+        adduser -D -g 'www' www && \
+        chown -R www:www /var/lib/nginx    && \
+        chown -R www:www /www
 
-
-      
-        
-COPY    setup.sh   /tmp
-RUN     sh /tmp/setup.sh
 COPY    nginx.conf      /etc/nginx/
 RUN     mkdir -p /run/nginx  && mkdir -p /run/openrc/softlevel
 ADD     services_status.sh /tmp 

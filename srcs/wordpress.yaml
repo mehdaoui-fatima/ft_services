@@ -17,8 +17,8 @@ spec:
         imagePullPolicy: Never
         resources:
           limits:
-            memory: "128Mi"
-            cpu: "500m"
+            memory: "200Mi"
+            cpu: "100m"
         ports:
         - name : wordpress
           containerPort: 5050
