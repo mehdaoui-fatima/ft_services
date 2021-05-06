@@ -18,8 +18,8 @@ RUN     apk update  && \
         influx -username fmehdaou -password 123 -execute "CREATE DATABASE wordpressdb" 
 
 
-ADD     services_status.sh /tmp
-ADD     telegraf.conf /etc/
+ADD     srcs/services_status.sh /tmp
+ADD     srcs/telegraf.conf /etc/
 
 #By default, InfluxDB uses TCP port 8086 for client-server communication over the InfluxDB HTTP API
 EXPOSE 8086 

@@ -7,11 +7,12 @@ RUN     apk update  && \
         tar -zxvf grafana-7.3.1.linux-amd64.tar.gz && \
         rm grafana-7.3.1.linux-amd64.tar.gz && \
         mv grafana-7.3.1 grafana && \
-        apk add --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main libc6-compat
-      
+        apk add telegraf --repository=http://nl.alpinelinux.org/alpine/edge/community && \
+        apk add --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main libc6-compat 
 
 
-ADD     services_status.sh /tmp 
+ADD     srcs/services_status.sh /tmp 
+ADD     srcs/telegraf.conf /etc/
 
 EXPOSE 3000
 
