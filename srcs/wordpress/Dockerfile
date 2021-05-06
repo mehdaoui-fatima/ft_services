@@ -11,19 +11,14 @@ RUN     apk update && \
         apk update && \
         adduser -D -g 'www' www && \
         chown -R www:www /var/lib/nginx && \
-        chown -R www:www /www 
+        chown -R www:www /www && \
+        apk add telegraf --repository=http://nl.alpinelinux.org/alpine/edge/community
 
 
-ADD     services_status.sh /tmp  
-COPY    nginx.conf      /etc/nginx/
+ADD     srcs/services_status.sh /tmp  
+ADD     srcs/nginx.conf      /etc/nginx/
 RUN     mkdir -p /run/nginx  && mkdir -p /run/openrc/softlevel
-
-
-
-
-
-
-
+ADD     srcs/telegraf.conf /etc/
 
 EXPOSE 5050
 ENTRYPOINT ["sh", "/tmp/services_status.sh"]
