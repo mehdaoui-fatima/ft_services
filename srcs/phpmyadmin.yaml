@@ -23,5 +23,20 @@ spec:
         - name : phpmyadmin
           containerPort: 5000
           hostPort : 5000
-
-
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: phpmyadmin
+  annotations: 
+    metallb.universe.tf/allow-shared-ip : shared-ip
+spec:
+  type: LoadBalancer
+  selector:
+    app: phpmyadmin
+  ports:
+    - protocol: TCP
+      name: phpmyadmin
+      port: 5000
+      targetPort: 5000
+    
