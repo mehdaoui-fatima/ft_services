@@ -15,6 +15,10 @@ spec:
       - name: ftps
         image: ftps
         imagePullPolicy: Never
+        resources:
+          limits:
+            memory: "300Mi"
+            cpu: "200m"
         ports:
         - name : ftps
           containerPort: 21
