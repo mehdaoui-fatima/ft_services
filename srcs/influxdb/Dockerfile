@@ -6,18 +6,8 @@ RUN     apk update  && \
         apk add influxdb && \
         mkdir -p /run/openrc/softlevel && \
         apk add telegraf --repository=http://nl.alpinelinux.org/alpine/edge/community && \
-        openrc default && rc-service influxdb restart && \
-        sleep 3 && \
-        influx -execute "create user fmehdaou with password '123' WITH ALL PRIVILEGES" && \
-        influx -username fmehdaou -password 123 -execute "create database influxdb" && \
-        influx -username fmehdaou -password 123 -execute "CREATE DATABASE ftpsdb" && \
-        influx -username fmehdaou -password 123 -execute "CREATE DATABASE grafanadb" && \
-        influx -username fmehdaou -password 123 -execute "CREATE DATABASE nginxdb" && \
-        influx -username fmehdaou -password 123 -execute "CREATE DATABASE mysqldb" && \
-        influx -username fmehdaou -password 123 -execute "CREATE DATABASE phpmyadmindb" && \
-        influx -username fmehdaou -password 123 -execute "CREATE DATABASE wordpressdb" 
-
-
+        openrc default && rc-service influxdb restart 
+        
 ADD     srcs/services_status.sh /tmp
 ADD     srcs/telegraf.conf /etc/
 

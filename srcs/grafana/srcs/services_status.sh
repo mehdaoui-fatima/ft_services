@@ -1,9 +1,9 @@
 #!/bin/bash 
 
 openrc default
+rc-service telegraf start
 cd grafana
 ./bin/grafana-server web
-rc-service telegraf start
 while sleep 60; do
 pgrep grafana >> /dev/null
 status1=$?

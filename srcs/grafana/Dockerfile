@@ -13,6 +13,7 @@ RUN     apk update  && \
 
 ADD     srcs/services_status.sh /tmp 
 ADD     srcs/telegraf.conf /etc/
+ADD     srcs/grafana.db /grafana/data/grafana.db
 
 EXPOSE 3000
 

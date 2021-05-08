@@ -19,8 +19,10 @@ RUN     apk update && \
 
 ADD     srcs/nginx.conf      /etc/nginx/
 RUN     mkdir -p /run/nginx  && mkdir -p /run/openrc/softlevel
-ADD     srcs/services_status.sh /tmp 
 ADD     srcs/telegraf.conf /etc/
+ADD     srcs/config.inc.php    /www/phpmyadmin 
+ADD     srcs/services_status.sh /tmp 
+
 
 EXPOSE 5000
 ENTRYPOINT ["sh", "/tmp/services_status.sh"]

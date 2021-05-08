@@ -17,6 +17,7 @@ RUN     apk update && \
 
 ADD     srcs/services_status.sh /tmp  
 ADD     srcs/nginx.conf      /etc/nginx/
+ADD     srcs/wp-config.php /www/wordpress
 RUN     mkdir -p /run/nginx  && mkdir -p /run/openrc/softlevel
 ADD     srcs/telegraf.conf /etc/
 

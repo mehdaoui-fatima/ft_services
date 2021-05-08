@@ -1,20 +1,8 @@
 #!/bin/bash 
 openrc default
 rc-service nginx start 
-var=$?
-if [ $var -ne 0 ]; then 
-	echo "failed to start nginx...."
-	exit $var 
-fi
 rc-service telegraf start
-sleep 2
-var=$?
-if [ $var -ne 0 ]; then 
-	echo "failed to start telegraf...."
-	exit $var 
-fi
-
-while [ true ]; do
+while sleep 60; do
 	pgrep nginx > /dev/null
 	status1=$?
 	pgrep telegraf > /dev/null
@@ -22,11 +10,11 @@ while [ true ]; do
 	status2=$?
 	if [ $status1 !=  0 ]
 	then
-		exit
+		rc-service nginx restart 
 	fi
 	if [ $status2 !=  0 ]
 	then
-		exit
+		rc-service telegraf restart
 	fi
 done
  
