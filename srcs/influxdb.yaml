@@ -6,9 +6,8 @@ spec:
   resources:
     requests:
       storage: 1Gi
-  volumeMode: Filesystem
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
 ---
 apiVersion: apps/v1
 kind: Deployment

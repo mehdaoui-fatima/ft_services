@@ -9,7 +9,7 @@ mysql -u root -e "create database phpmyadmin;"
 mysql < /tmp/phpmyadmin.sql -u root
 rc-service telegraf start
 while sleep 20; do
-pgrep nginx > /dev/null
+pgrep mysqld > /dev/null
 status1=$?
 pgrep telegraf >> /dev/null
 status2=$?

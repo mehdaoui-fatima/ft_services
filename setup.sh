@@ -1,4 +1,4 @@
-minikube start 
+# minikube start 
 eval $(minikube docker-env)
 docker build -t ftps srcs/ftps
 docker build -t phpmyadmin srcs/phpmyadmin
