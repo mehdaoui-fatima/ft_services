@@ -2,7 +2,7 @@
 openrc default
 rc-service nginx start 
 rc-service telegraf start
-while sleep 60; do
+while sleep 20; do
 	pgrep nginx > /dev/null
 	status1=$?
 	pgrep telegraf > /dev/null
@@ -10,11 +10,13 @@ while sleep 60; do
 	status2=$?
 	if [ $status1 !=  0 ]
 	then
-		rc-service nginx restart 
+		# rc-service nginx restart 
+		exit 1
 	fi
 	if [ $status2 !=  0 ]
 	then
-		rc-service telegraf restart
+		# rc-service telegraf restart
+		exit 1
 	fi
 done
  
